@@ -1,6 +1,21 @@
 const grid_els = document.querySelectorAll('.grid-item');
 const m = new Matrix();
 
+brightness = {
+    0: 100,
+    2: 90,
+    4: 80,
+    8: 70,
+    16: 60,
+    32: 50,
+    64: 40,
+    128: 30,
+    256: 20,
+    512: 10,
+    1024: 5,
+    2048: 0,
+}
+
 function get_grid_el(i, j){
     return grid_els[i * MATSIZE + j];
 }
@@ -8,7 +23,14 @@ function get_grid_el(i, j){
 function update_grid(){
     for(let i = 0; i < MATSIZE; i++){
         for(let j = 0; j < MATSIZE; j++){
-            get_grid_el(i, j).innerHTML = m.values[i][j] === 0 ? '' : m.values[i][j].toString();
+            let el = get_grid_el(i, j);
+            let val = m.values[i][j]
+            el.innerHTML = val === 0 ? '' : val.toString();
+            el.style.background = `hsl(275, 100%, ${brightness[val]}%)`
+            if(brightness[val] <= 40)
+                el.style.color = 'white';
+            else
+                el.style.color = '';
         }
     }
 }
@@ -16,7 +38,6 @@ function update_grid(){
 update_grid();
 
 document.addEventListener('keydown', event=>{
-    console.log(event);
     switch(event.key){
         case 'A':
         case 'a':
@@ -38,6 +59,8 @@ document.addEventListener('keydown', event=>{
         case 'ArrowUp':
             m.move(Direction.Up);
             break;
+        default:
+            return;
     }
     m.insert_random();
     update_grid();

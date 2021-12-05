@@ -19,6 +19,7 @@ class Matrix{
                 row.push(0);
             this.values.push(row);
         }
+        this.insert_random();
     }
 
     slide(direction){

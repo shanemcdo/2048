@@ -43,4 +43,5 @@ body{
     border-radius: 15%;
     color: var(--bg);
     font-size: auto;
+    font-size: 3em;
 }
