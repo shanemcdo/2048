@@ -172,4 +172,34 @@ class Matrix{
         for(const row of this.values)
             console.log(row);
     }
+
+    random_number(){
+        let rand = Math.random();
+        if(rand <= 0.6){
+            return 2
+        }else if(rand <= 0.9){
+            return 4
+        }else if(rand <= 0.96){
+            return 8
+        }
+        return 16
+    }
+
+    free_spaces(){
+        let spaces = [];
+        for(let i = 0; i < MATSIZE; i++){
+            for(let j = 0; j < MATSIZE; j++){
+                if(this.values[i][j] === 0)
+                    spaces.push({'i': i, 'j': j});
+            }
+        }
+        return spaces;
+    }
+
+    insert_random(){
+        let num = this.random_number();
+        let spaces = this.free_spaces();
+        let space = spaces[Math.floor(Math.random() * spaces.length)]
+        this.values[space.i][space.j] = num;
+    }
 }
