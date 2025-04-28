@@ -1,6 +1,6 @@
 :root{
-    --bg: #22002a;
-    --fg: #fef;
+	--bg: #22002a;
+	--fg: #fef;
 }
 
 html, body{
@@ -14,14 +14,14 @@ html, body{
 }
 
 body{
-    background: var(--bg);
-    color: var(--fg);
+	background: var(--bg);
+	color: var(--fg);
 }
 
 #game-over-popup{
 	display: none;
 	background: var(--bg);
-    color: var(--fg);
+	color: var(--fg);
 	position: absolute;
 	text-align: center;
 }
@@ -36,32 +36,32 @@ body{
 }
 
 .flex{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .box{
-    --size: min(90vw, 90vh);
-    margin: 0;
-    width: var(--size);
-    height: var(--size);
-    background: var(--fg);
-    border-radius: 5%;
+	--size: min(90vw, 90vh);
+	margin: 0;
+	width: var(--size);
+	height: var(--size);
+	background: var(--fg);
+	border-radius: 5%;
 }
 
 .grid{
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-    padding: 8px;
+	display: grid;
+	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: repeat(4, 1fr);
+	padding: 8px;
 }
 
 .grid-item{
-    background: white;
-    margin: 8px;
-    border-radius: 15%;
-    color: var(--bg);
-    font-size: auto;
-    font-size: 3em;
+	background: white;
+	margin: 8px;
+	border-radius: 15%;
+	color: var(--bg);
+	font-size: auto;
+	font-size: 3em;
 }
