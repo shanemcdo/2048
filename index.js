@@ -1,5 +1,8 @@
 const grid_els = document.querySelectorAll('.grid-item');
-const m = new Matrix();
+const gameover_el = document.getElementById('game-over-popup');
+const m = new Matrix(() => {
+	gameover_el.style.display = 'block';
+});
 
 brightness = {
     0: 100,
@@ -33,6 +36,12 @@ function update_grid(){
                 el.style.color = '';
         }
     }
+}
+
+function reset_game(){
+	gameover_el.style.display = '';
+	m.reset();
+	update_grid();
 }
 
 update_grid();

@@ -15,6 +15,17 @@ body{
     color: var(--fg);
 }
 
+#game-over-popup{
+	display: none;
+	background: var(--bg);
+    color: var(--fg);
+	position: absolute;
+	text-align: center;
+}
+
+#game-over-popup input {
+}
+
 .flex{
     display: flex;
     justify-content: center;

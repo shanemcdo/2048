@@ -11,7 +11,8 @@ class Direction{
 }
 
 class Matrix{
-    constructor(){
+    constructor(gameover_callback = () => {}){
+		this.gameover_callback = gameover_callback;
         this.values = [];
         for(let _i = 0; _i < MATSIZE; _i++){
             let row = [];
@@ -20,6 +21,7 @@ class Matrix{
             this.values.push(row);
         }
         this.insert_random();
+		this.gameover = false;
     }
 
     slide(direction){
@@ -167,6 +169,7 @@ class Matrix{
         this.merge(direction);
         this.slide(direction);
         this.log()
+		this.check_gameover();
     }
 
     log(){
@@ -200,7 +203,50 @@ class Matrix{
     insert_random(){
         let num = this.random_number();
         let spaces = this.free_spaces();
-        let space = spaces[Math.floor(Math.random() * spaces.length)]
-        this.values[space.i][space.j] = num;
+		if(spaces.length > 0) {
+			let space = spaces[Math.floor(Math.random() * spaces.length)]
+			this.values[space.i][space.j] = num;
+		}
     }
+
+	check_gameover(){
+		this.gameover = true;
+		// check for zeros
+		for(let i = 0; i < MATSIZE && this.gameover; i++){
+			for(let j = 0; j < MATSIZE && this.gameover; j++){
+				if(this.values[i][j] === 0) {
+					this.gameover = false;
+				}
+			}
+		}
+		// check for rows
+		for(let i = 0; i < MATSIZE && this.gameover; i++){
+			for(let j = 1; j < MATSIZE && this.gameover; j++){
+				if(this.values[i][j] === this.values[i][j - 1]) {
+					this.gameover = false;
+				}
+			}
+		}
+		// check for columns
+		for(let i = 0; i < MATSIZE && this.gameover; i++){
+			for(let j = 1; j < MATSIZE && this.gameover; j++){
+				if(this.values[j][i] === this.values[j - 1][i]) {
+					this.gameover = false;
+				}
+			}
+		}
+		if(this.gameover) {
+			this.gameover_callback();
+		}
+	}
+
+	reset(){
+        for(let i = 0; i < MATSIZE; i++){
+            for(let j = 0; j < MATSIZE; j++){
+				this.values[i][j] = 0;
+			}
+        }
+        this.insert_random();
+		this.gameover = false;
+	}
 }
