@@ -24,10 +24,13 @@ body{
 	color: var(--fg);
 	position: absolute;
 	text-align: center;
+	padding: 1rem;
+	border-radius: 1rem;
+	font-size: 2rem;
 }
 
 #game-over-popup input {
-	font-size: 1rem;
+	font-size: 1.7rem;
 	border-radius: 1rem;
 	padding: 10px;
 	font-family: "Josefin Sans", sans-serif;

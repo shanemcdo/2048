@@ -6,14 +6,14 @@ const m = new Matrix(() => {
 
 brightness = {
 	0: 100,
-	2: 90,
-	4: 80,
-	8: 70,
-	16: 60,
-	32: 50,
-	64: 40,
-	128: 30,
-	256: 20,
+	2: 80,
+	4: 60,
+	8: 50,
+	16: 40,
+	32: 30,
+	64: 25,
+	128: 20,
+	256: 15,
 	512: 10,
 	1024: 5,
 	2048: 0,
@@ -26,11 +26,12 @@ function get_grid_el(i, j){
 function update_grid(){
 	for(let i = 0; i < MATSIZE; i++){
 		for(let j = 0; j < MATSIZE; j++){
-			let el = get_grid_el(i, j);
-			let val = m.values[i][j]
+			const el = get_grid_el(i, j);
+			const val = m.values[i][j]
+			const brightness_val = brightness[val] ?? 0;
 			el.innerHTML = val === 0 ? '' : val.toString();
-			el.style.background = `hsl(275, 100%, ${brightness[val]}%)`
-			if(brightness[val] <= 40)
+			el.style.background = `hsl(275, 100%, ${brightness_val}%)`
+			if(brightness_val <= 40)
 				el.style.color = 'white';
 			else
 				el.style.color = '';
